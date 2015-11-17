@@ -1,0 +1,214 @@
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'>\x3C/script>")
+</script>
+
+<script src="//cdn.optimizely.com/js/3873161792.js"></script> 
+
+<script src="//s3.amazonaws.com/annelewisllc/assets/convio/responsive_contrib/organization_custom/greenpeace/als_convio_responsive_contrib.js"></script>
+<!-- <script src="http://localhost/www/github/als_convio/responsive_contrib/organization_custom/greenpeace/als_convio_responsive_contrib.js"></script> -->
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    //wrap the first five donation-level-containers in a new div
+    var recurring_donation_levels = 5;
+    var recurring_header = "I want to become a monthly supporter with a gift of:";
+    var recurring_footer = "Monthly giving is the best giving option for both Greenpeace and our supporters — it allows us to have a dependable base of support and save time, banking fees and paper by not having to send supporters future reminders and renewal notices.";
+    var onetime_header = "Or make a single donation in the amount of:";
+
+    $('.donation-levels .donation-level-container').slice(0, recurring_donation_levels).wrapAll('<div class="als_recurring_amounts"></div>');
+    $('.als_recurring_amounts').prepend('<h3 class="als_recurring_header">' + recurring_header + '</h3>');
+    $('.als_recurring_amounts').append('<span class="als_recurring_footer">' + recurring_footer + '</span>');
+    $('.als_recurring_amounts').after('<h3 class="als_onetime_header">' + onetime_header + '</h3>');
+
+    //als_convio_responsive_contrib.js should do this, but it uses " > " in the selector.  Adding the wrapper div above breaks that.  Add btn class again here.
+    //$('#als_box .donation-levels .donation-level-container .donation-level-input-container label').addClass('btn btn-default');
+});
+
+</script>
+
+<style type="text/css">
+    /* WRAPPER AND CLIENT-SPECIFIC STYLES */
+
+    @font-face{
+            font-family: 'clear_sans_mediumregular';
+            src: url('https://s3.amazonaws.com/greenpeace-als/fonts/clearsans_medium_macroman/ClearSans-Medium-webfont.eot');
+            src: url('https://s3.amazonaws.com/greenpeace-als/fonts/clearsans_medium_macroman/ClearSans-Medium-webfont.eot?iefix') format('eot'),
+                 url('https://s3.amazonaws.com/greenpeace-als/fonts/clearsans_medium_macroman/ClearSans-Medium-webfont.woff') format('woff'),
+                 url('https://s3.amazonaws.com/greenpeace-als/fonts/clearsans_medium_macroman/ClearSans-Medium-webfont.ttf') format('truetype'),
+                 url('https://s3.amazonaws.com/greenpeace-als/fonts/clearsans_medium_macroman/ClearSans-Medium-webfont.svg#webfont') format('svg');
+    }
+
+    @font-face{
+            font-family: 'liberation_sansbold';
+            src: url('https://s3.amazonaws.com/greenpeace-als/fonts/liberationsans_bold_macroman/LiberationSans-Bold-webfont.eot');
+            src: url('https://s3.amazonaws.com/greenpeace-als/fonts/liberationsans_bold_macroman/LiberationSans-Bold-webfont.eot?iefix') format('eot'),
+                 url('https://s3.amazonaws.com/greenpeace-als/fonts/liberationsans_bold_macroman/LiberationSans-Bold-webfont.woff') format('woff'),
+                 url('https://s3.amazonaws.com/greenpeace-als/fonts/liberationsans_bold_macroman/LiberationSans-Bold-webfont.ttf') format('truetype'),
+                 url('https://s3.amazonaws.com/greenpeace-als/fonts/liberationsans_bold_macroman/LiberationSans-Bold-webfont.svg#webfont') format('svg');
+    }
+
+
+    body, div.responsive {
+        color: #575757;
+        font-family: 'clear_sans_mediumregular',"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+        font-weight: 400;
+        font-size: 10pt;
+        line-height: 1.5em;
+    }
+    #wrapper {
+        background: #ffffff;
+        border-top: 10px solid #66cc00;
+    }
+    #wrapper_inner {
+        max-width: 960px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    #header {
+        background: #ffffff;
+    }
+    #header_img_container {
+        height: 30px;
+        padding-top: 8px;
+        padding-left: 10px;
+        background: #ffffff;
+        width: 200px;
+    }
+    #header_img_container img {
+        border: 0;
+        max-width: 180px;
+        height: auto;
+    }
+    #main {
+        margin: 0 1em;
+    }
+    .donation-form-content {
+        margin-bottom: 3em;
+    }
+    #footer {
+        margin: 1em;
+        color: #999999;
+    }
+    #footer a {
+        color: #999999;
+    }
+
+    div.donation-level-general-ask, div.html-caption-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #als_box {
+        /* background-image: url("http://localhost/www/github/als_convio/responsive_contrib/demo/greenpeace_donation_top_border.jpg"); */
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding-top: 20px;
+    }
+    #als_box h2.section-header-container {
+        text-transform: capitalize;
+        color: #66cc00;
+        border-bottom: 0;
+        letter-spacing: 1px;
+        font-family: 'liberation_sansbold',"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    }
+    #als_box h3 {
+        font-size: 18px;
+        text-align: left;
+        padding: 0em 0.5em 0em 0.5em;
+        font-family: 'liberation_sansbold',sans-serif;
+    }
+
+    /* apply to als_recurring_amounts */
+    #als_box .als_recurring_amounts {
+        background: #ffffcc;
+        display: block;
+        padding-right: 0.5em;
+        box-sizing: border-box;
+        border: 1px solid rgb(153, 153, 153);
+    }
+    #als_box .als_recurring_footer {
+        clear: both;
+        display: block;
+        font-size: 12px;
+        text-align: left;
+        padding: 1em;
+    }
+	#payment_bank_container > h3, .payment-type-selection-container > h3 {
+	   display: none;
+	}
+
+    /* these set the styles for the "other" amount in the recurring section */
+    #als_box .als_recurring_amounts div.donation-level-container:last-of-type {
+        width: 66.6666666666%;
+    }
+    #als_box .als_recurring_amounts div.donation-level-container:last-of-type .donation-level-user-entered {
+        width: 50%;
+        display: inline-block;
+        float: right;
+    }
+    #als_box #als_amounts .als_recurring_amounts div.donation-level-container:last-of-type .btn {
+        width: 47.5%;
+        max-width: 200px;
+        box-sizing: border-box;
+    }
+    @media screen and (max-width: 400px)
+    {
+
+        #als_box .als_recurring_amounts div.donation-level-container:last-of-type {
+            width: 100%;
+        }
+
+    }
+
+    /* button styles */
+    #als_box .btn {
+        font-weight: bold;
+    }
+    #als_box .btn-primary {
+        background-color: #66cc00;
+        border-color: #66cc00;
+    }
+
+    div.donation-level-general-ask, div.html-caption-container {
+        margin: 0 auto;
+    }
+
+    div.button-container {
+        padding-top: 40px;
+    }
+    div.responsive button.finish-step {
+        background-color: #e04a00;
+        border-color: #e04a00;
+        border-radius: 0;
+    }
+    div.responsive button.finish-step:hover {
+        background-color: #e86f33;
+        border-color: #e86f33;
+    }
+
+    #form_footer {
+        width: 100%;
+        color: #555555;
+    }
+    .form_footer_column {
+        width: 25%;
+        box-sizing: border-box;
+        padding: 1em;
+        float: left;
+    }
+    @media screen and (max-width: 500px) {
+        .form_footer_column {
+            width: 50%;
+        }
+    }
+
+
+</style>
+
+<!--[if lte IE 8]>
+<style type="text/css">
+    .js FORM#ProcessForm {
+        display: block;
+    }
+</style>
+<![endif]-->

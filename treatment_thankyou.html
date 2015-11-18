@@ -8,6 +8,16 @@
   var valueInCents = parseInt(valueRaw.replace(/[^0-9.-]+/g, '')) * 100;
   var isRecurring = ('[[S120:dc:recurringCurrentStatusString]]' === 'Active')
 
+  if (isRecurring) {
+    var optimizelyEventName = 'donationRecurringOnly';
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
+  } else {
+    var optimizelyEventName = 'donationOneTimeOnly';
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
+  }
+
   // Optional support for tracking long-term recurring and one-time gift value.
   var trackRecurringLongTermValue = true;
   var recurringValueFactor = 24.62;    // Example. Determine through outside data work.

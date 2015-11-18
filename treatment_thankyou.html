@@ -1,5 +1,5 @@
-<!-- // Core Optimizely snippet. Update for specific organization / project.
-// Place in document <head> tag. -->
+<!-- Core Optimizely snippet. Update for specific organization / project. -->
+<!-- Place in document head tag. -->
 <script src="//cdn.optimizely.com/js/3873161792.js"></script>
 
 <script>
@@ -7,16 +7,6 @@
   var valueRaw = "[[S120:dc:giftAmount]]";
   var valueInCents = parseInt(valueRaw.replace(/[^0-9.-]+/g, '')) * 100;
   var isRecurring = ('[[S120:dc:recurringCurrentStatusString]]' === 'Active')
-
-  if (isRecurring) {
-    var optimizelyEventName = 'donationRecurringOnly';
-    window.optimizely = window.optimizely || [];
-    window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
-  } else {
-    var optimizelyEventName = 'donationOneTimeOnly';
-    window.optimizely = window.optimizely || [];
-    window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
-  }
 
   // Optional support for tracking long-term recurring and one-time gift value.
   var trackRecurringLongTermValue = true;

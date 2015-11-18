@@ -1,0 +1,226 @@
+<!-- // Core Optimizely snippet. Update for specific organization / project.
+// Place in document <head> tag. -->
+<script src="//cdn.optimizely.com/js/3873161792.js"></script>
+
+<script>
+  // Use Luminate S tags to set the gift amount and recurring state.
+  var valueRaw = "[[S120:dc:giftAmount]]";
+  var valueInCents = parseInt(valueRaw.replace(/[^0-9.-]+/g, '')) * 100;
+  var isRecurring = ('[[S120:dc:recurringCurrentStatusString]]' === 'Active')
+
+  if (isRecurring) {
+    var optimizelyEventName = 'donationRecurringOnly';
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
+  } else {
+    var optimizelyEventName = 'donationOneTimeOnly';
+    window.optimizely = window.optimizely || [];
+    window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
+  }
+
+  // Optional support for tracking long-term recurring and one-time gift value.
+  var trackRecurringLongTermValue = true;
+  var recurringValueFactor = 2.92;    // Example. Determine through outside data work.
+  var onetimeValueFactor = 24.62;     // Example. Determine through outside data work.
+
+  if (trackRecurringLongTermValue) {
+    if (isRecurring) {
+      valueInCents = valueInCents * recurringValueFactor;
+    } else {
+      valueInCents = valueInCents * onetimeValueFactor;
+    }
+  }
+
+  // Send resulting revenue calculation to Optimizely. Be sure to match the
+  // "event name" with the event specified in the corresponding Optimizely goal.
+  var optimizelyEventName = 'donationLongTermValue';
+  window.optimizely = window.optimizely || [];
+  window.optimizely.push(['trackEvent', optimizelyEventName, {'revenue': valueInCents}]);
+</script>
+
+<!-- Persist a Data Layer for Google Tage Manager's e-Commerce Transactions. SB@DataHabits Nov 6 2015 -->
+<script type="text/javascript">// <![CDATA[
+var transactionId, transactionAffiliation, transactionTotal, donationLevel, giftAmount;
+
+// Prevent a string that isn't a number to be passed as the transaction ID so that e-Commerce doesn't
+// crash
+    var donationLevel = "[[S120:dc:donationLevelName]]";
+    var sku1, sku2, sku3, sku; // SKU
+    var donationAmount, donationStripped, donationNumber, donationRounded;
+
+
+    sku1 = "01"; // always 01, since 01 represents a donation
+
+    switch(donationLevel) {
+      case '$500 single':
+      case '$250 single':
+      case '$100 single':
+      case '$75 single':
+      case '$50 single':
+      case '$30 single':
+      case 'min gift':
+      case 'Other Single Amount':
+        sku2 = "01";
+        break;
+
+      case 'monthly min':
+      case 'second monthly':
+      case '$20 per month':
+      case '$30 monthly':
+      case '$50 per month':
+      case '$100 per month':
+      case 'Other Monthly Amount':
+        sku2 = "02";
+        break;
+
+      default:
+        sku2 = "??";
+    }
+    donationAmount = "[[S120:dc:giftAmount]]";
+
+    // 1. Strip the $ out of the amount so it can be injected into the SKU
+    donationStripped = donationAmount.replace("$","");
+    // 2. Convert the amount from a string to a number
+    donationNumber = parseInt(donationStripped);
+    // 3. Round the amount down to a whole number
+    donationRounded = Math.floor(donationNumber);
+    // 4. Set this number to the third set of digits in the SKU
+    sku3 = donationRounded;
+    console.log(sku3);
+
+sku = sku1 + sku2 + sku3;
+
+
+dataLayer.push({
+    'transactionId': '[[S120:dc:trackingCode]]',
+    'transactionAffiliation': '[[S120:dc:donorState]]',
+    'transactionTotal': "[[S120:dc:giftAmount]]",
+    'transactionProducts': [{
+        'sku': sku,
+        'name': 'Donation',
+        'category': "[[S120:dc:donationLevelName]]",
+        'price': "[[S120:dc:giftAmount]]",
+        'quantity': 1
+}]
+});
+// ]]></script>
+<script src="https://secure.adnxs.com/px?id=512845&amp;t=1" type="text/javascript"></script>
+<!-- Segment Pixel - Donation Exclusion Pixel - DO NOT MODIFY -->
+<script src="https://secure.adnxs.com/seg?add=3581364&amp;t=1" type="text/javascript"></script>
+<!-- End of Segment Pixel -->
+<div align="center">
+
+<table id="table1" style="border-collapse: collapse;" border="0" width="98%">
+<tbody>
+<tr>
+<td colspan="2"><strong>Thank you
+<convio:session name="120" param="dc:firstName"></convio:session> for your generous gift.</strong>
+<p style="font-size: 14px;">Greenpeace exists because this fragile earth deserves a voice - it needs
+		solutions, it needs change, and it needs action. You stand with nearly 3
+		million supporters worldwide, dedicated to giving our planet that voice.
+		Thanks to you, together we can continue to win major victories for the planet.<br />
+<br />You will receive an e-mail confirmation of your gift shortly, a summary is
+		below. If you have any
+questions please contact us at 1-800-326-0959 (Mon-Fri, 9:30am-5pm ET) or
+<a style="font-size: 14px;" href="mailto:info@wdc.greenpeace.org"><span style="font-family: Verdana;">info@wdc.greenpeace.org</span></a>.</p>
+<p style="font-size: 14px;">
+		Greenpeace, Inc. is a non-profit, tax-exempt, 501(c)(4) organization. Donations to Greenpeace, Inc. are not tax-deductible.</p>
+</td>
+</tr>
+<tr>
+<td colspan="2" bgcolor="#C0C0C0"><strong><span style="font-family: Verdana;">Donation Summary</span></strong></td>
+</tr>
+<tr>
+<td colspan="2"><br />
+		<span style="font-family: Verdana;">
+<table border="0">
+<tbody>
+<tr>
+<td>Transaction Date:</td>
+<td>
+   <convio:session name="120" param="dc:transactionDate"></convio:session></td>
+</tr>
+<tr>
+<td>Gift Amount:</td>
+<td>
+   <convio:session name="120" param="dc:giftAmount"></convio:session></td>
+</tr>
+<tr>
+<td>Gift Type:</td>
+<td>
+   <convio:session name="120" param="dc:donationLevelName"></convio:session></td>
+</tr>
+<tr>
+<td>First Name:</td>
+<td>
+   <convio:session name="120" param="dc:donorFirstName"></convio:session></td>
+</tr>
+<tr>
+<td>Last Name:</td>
+<td>
+   <convio:session name="120" param="dc:donorLastName"></convio:session></td>
+</tr>
+<tr>
+<td>Street Address:</td>
+<td>
+   <convio:session name="120" param="dc:donorStreet1"></convio:session></td>
+</tr>
+<tr>
+<td>Street 2:</td>
+<td>
+   <convio:session name="120" param="dc:donorStreet2"></convio:session></td>
+</tr>
+<tr>
+<td>City:</td>
+<td>
+   <convio:session name="120" param="dc:donorCity"></convio:session></td>
+</tr>
+<tr>
+<td>State:</td>
+<td>
+   <convio:session name="120" param="dc:donorState"></convio:session></td>
+</tr>
+<tr>
+<td>Zip:</td>
+<td>
+   <convio:session name="120" param="dc:donorZip"></convio:session></td>
+</tr>
+<tr>
+<td>Country:</td>
+<td>
+   <convio:session name="120" param="dc:donorCountry"></convio:session></td>
+</tr>
+<tr>
+<td>Email:</td>
+<td>
+   <convio:session name="120" param="dc:email"></convio:session></td>
+</tr>
+<tr>
+<td>Payment Type:</td>
+<td>
+   <convio:session name="120" param="dc:paymentMethod"></convio:session></td>
+</tr>
+<tr>
+<td>Credit Card Number:</td>
+<td>
+   <convio:session name="120" param="dc:creditCardNumber"></convio:session></td>
+</tr>
+<tr>
+<td>Gift Amount:</td>
+<td>
+   <convio:session name="120" param="dc:giftAmount"></convio:session></td>
+</tr>
+<tr>
+<td>Tracking Code:</td>
+<td>
+   <convio:session name="120" param="dc:trackingCode"></convio:session></td>
+</tr>
+</tbody>
+</table>
+</span>
+		<br /><convio:session name="51" param="reus_donation_ty_modal"></convio:session><br />
+&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>

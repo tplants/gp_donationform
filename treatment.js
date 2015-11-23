@@ -3,7 +3,9 @@ $('html').hide();
 window.alsOptimizely = {};
 
 alsOptimizely.registeredVariations = [
-  {"varA": 3981, "varB": 3982}
+  {"varA": 3981, "varB": 3982},
+  {"varA": 4061, "varB": 4064},
+  {"varA": 4063, "varB": 4065}
 ];
 
 alsOptimizely.activeVariations = {};
